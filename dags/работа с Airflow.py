@@ -11,43 +11,43 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 
 
-def gener_flower(ind = 'С1'):
+def gener_value(ind = 'С1'):
     from sklearn.datasets import make_blobs
-    df=pd.read_csv('/workspaces/-/data_of_oilcompany_delt_1.csv', index_col='class')
+    df=pd.read_csv('/workspaces/-/data_of_oilcompany_delt_1.csv', index_col='group')
     # df = df.drop(columns=['class.1'])
-    centers = df.loc[df.index == ind, ['sepal length - Mean', 'sepal width - Mean', 'petal length - Mean', 'petal width - Mean']]
-    cluster_std = df.loc[df.index == ind, ['sepal length - Variance', 'sepal width - Variance', 'petal length - Variance', 'petal width - Variance']]
+    centers = df.loc[df.index == ind, ['∆Выручки 2021 - Mean', '∆Выручки 2022 - Mean', '∆Чистой прибыли 2021 - Mean', '∆Чистой прибыли 2022	- Mean', '∆Активов 2021 - Mean', '∆Активов 2022 - Mean', '∆Собств. капитала 2021 - Mean', '∆Собств. капитала 2022 - Mean', '∆Рыночн. капитализации 2021 - Mean', '∆Рыночн. капитализации 2022 - Mean',	'∆Затрат 2021 - Mean', '∆Затрат 2022 - Mean']]
+    cluster_std = df.loc[df.index == ind, ['∆Выручки 2021 - Variance', '∆Выручки 2022 - Variance', '∆Чистой прибыли 2021 - Variance', '∆Чистой прибыли 2022	- Variance', '∆Активов 2021 - Variance', '∆Активов 2022 - Variance', '∆Собств. капитала 2021 - Variance', '∆Собств. капитала 2022 - Variance', '∆Рыночн. капитализации 2021 - Variance', '∆Рыночн. капитализации 2022 - Variance',	'∆Затрат 2021 - Variance', '∆Затрат 2022 - Variance']]
     centers = centers.to_numpy()
     cluster_std = cluster_std.to_numpy()
     X, y = make_blobs(n_samples=200, centers=centers, cluster_std=cluster_std, shuffle=True, random_state=42)
     return X,y
 
-def gener_class1():
-    X,y = gener_flower(ind = 'С1')
+def gener_group1():
+    X,y = gener_value(ind = 'С1')
     X_train, X_test, y_train, y_test = train_test_split(X, y)
-    df_train = pd.DataFrame(X_train, columns=['sepal length (cm)','sepal width (cm)','petal length (cm)','petal width (cm))'])
+    df_train = pd.DataFrame(X_train, columns=['∆Выручки 2021', '∆Выручки 2022', '∆Чистой прибыли 2021', '∆Чистой прибыли 2022', '∆Активов 2021', '∆Активов 2022', '∆Собств. капитала 2021', '∆Собств. капитала 2022', '∆Рыночн. капитализации 2021', '∆Рыночн. капитализации 2022',	'∆Затрат 2021', '∆Затрат 2022'])
     df_train['target'] = y_train
-    df_test = pd.DataFrame(X_test, columns=['sepal length (cm)','sepal width (cm)','petal length (cm)','petal width (cm))'])
+    df_test = pd.DataFrame(X_test, columns=['∆Выручки 2021', '∆Выручки 2022', '∆Чистой прибыли 2021', '∆Чистой прибыли 2022', '∆Активов 2021', '∆Активов 2022', '∆Собств. капитала 2021', '∆Собств. капитала 2022', '∆Рыночн. капитализации 2021', '∆Рыночн. капитализации 2022',	'∆Затрат 2021', '∆Затрат 2022])
     df_test['target'] = y_test
     df_train.to_csv('/opt/airflow/files/gener/df_train_1.csv', index=False)
     df_test.to_csv('/opt/airflow/files/gener/df_test_1.csv', index=False)
     
-def gener_class2():
-    X,y = gener_flower(ind = 'С2')
+def gener_group2():
+    X,y = gener_value(ind = 'С2')
     X_train, X_test, y_train, y_test = train_test_split(X, y)
-    df_train = pd.DataFrame(X_train, columns=['sepal length (cm)','sepal width (cm)','petal length (cm)','petal width (cm))'])
+    df_train = pd.DataFrame(X_train, columns=['∆Выручки 2021', '∆Выручки 2022', '∆Чистой прибыли 2021', '∆Чистой прибыли 2022', '∆Активов 2021', '∆Активов 2022', '∆Собств. капитала 2021', '∆Собств. капитала 2022', '∆Рыночн. капитализации 2021', '∆Рыночн. капитализации 2022',	'∆Затрат 2021', '∆Затрат 2022])
     df_train['target'] = y_train
-    df_test = pd.DataFrame(X_test, columns=['sepal length (cm)','sepal width (cm)','petal length (cm)','petal width (cm))'])
+    df_test = pd.DataFrame(X_test, columns=['∆Выручки 2021', '∆Выручки 2022', '∆Чистой прибыли 2021', '∆Чистой прибыли 2022', '∆Активов 2021', '∆Активов 2022', '∆Собств. капитала 2021', '∆Собств. капитала 2022', '∆Рыночн. капитализации 2021', '∆Рыночн. капитализации 2022',	'∆Затрат 2021', '∆Затрат 2022])
     df_test['target'] = y_test
     df_train.to_csv('/opt/airflow/files/gener/df_train_2.csv', index=False)
     df_test.to_csv('/opt/airflow/files/gener/df_test_2.csv', index=False)
     
-def gener_class3():
-    X,y =gener_flower(ind = 'С3')
+def gener_group3():
+    X,y =gener_value(ind = 'С3')
     X_train, X_test, y_train, y_test = train_test_split(X, y)
-    df_train = pd.DataFrame(X_train, columns=['sepal length (cm)','sepal width (cm)','petal length (cm)','petal width (cm))'])
+    df_train = pd.DataFrame(X_train, columns=['∆Выручки 2021', '∆Выручки 2022', '∆Чистой прибыли 2021', '∆Чистой прибыли 2022', '∆Активов 2021', '∆Активов 2022', '∆Собств. капитала 2021', '∆Собств. капитала 2022', '∆Рыночн. капитализации 2021', '∆Рыночн. капитализации 2022',	'∆Затрат 2021', '∆Затрат 2022])
     df_train['target'] = y_train
-    df_test = pd.DataFrame(X_test, columns=['sepal length (cm)','sepal width (cm)','petal length (cm)','petal width (cm))'])
+    df_test = pd.DataFrame(X_test, columns=['∆Выручки 2021', '∆Выручки 2022', '∆Чистой прибыли 2021', '∆Чистой прибыли 2022', '∆Активов 2021', '∆Активов 2022', '∆Собств. капитала 2021', '∆Собств. капитала 2022', '∆Рыночн. капитализации 2021', '∆Рыночн. капитализации 2022',	'∆Затрат 2021', '∆Затрат 2022])
     df_test['target'] = y_test
     df_train.to_csv('/opt/airflow/files/gener/df_train_3.csv', index=False)
     df_test.to_csv('/opt/airflow/files/gener/df_test_3.csv', index=False)
@@ -115,66 +115,55 @@ default_args = {
 }
 
 
-parallllll = DAG(
-    'parallllll',
+paral = DAG(
+    'paral',
     default_args=default_args,
     description='Our DAG 2',
     schedule_interval=timedelta(days=1),
 )
 
-gener_class1 = PythonOperator(
+gener_group1 = PythonOperator(
     task_id='gener_class1',
-    python_callable=gener_class1, #написать функцию
-    dag=parallllll,
+    python_callable=gener_group1, #написать функцию
+    dag=paral,
 )
-gener_class2 = PythonOperator(
+gener_group2 = PythonOperator(
     task_id='gener_class2',
-    python_callable=gener_class2, #написать функцию
-    dag=parallllll,
+    python_callable=gener_group2, #написать функцию
+    dag=paral,
 )
-gener_class3 = PythonOperator(
+gener_group3 = PythonOperator(
     task_id='gener_class3',
-    python_callable=gener_class3, #написать функцию
-    dag=parallllll,
+    python_callable=gener_group3, #написать функцию
+    dag=paral,
 )
 
 get_data_train = PythonOperator(
     task_id='get_data_train',
     python_callable=get_data_train, #написать функцию
-    dag=parallllll,
+    dag=paral,
 )
 get_data_test = PythonOperator(
     task_id='get_data_test',
     python_callable=get_data_test, #написать функцию
-    dag=parallllll,
+    dag=paral,
 )
 
 fit_model01 = PythonOperator(
     task_id='fit_model01',
     python_callable=train01, #написать функцию
-    dag=parallllll,
+    dag=paral,
 )
 fit_model02 = PythonOperator(
     task_id='fit_model02',
     python_callable=train02, #написать функцию
-    dag=parallllll,
+    dag=paral,
 )
 
 test_model = PythonOperator(
     task_id='test_model',
     python_callable=load_test, #написать функцию
-    dag=parallllll,
+    dag=paral,
 )
 
-gener_class1 >> get_data_train >> fit_model01 >> test_model
-gener_class2 >> get_data_train >> fit_model01 >> test_model
-gener_class3 >> get_data_train >> fit_model01 >> test_model
-gener_class1 >> get_data_test >> fit_model01 >> test_model
-gener_class2 >> get_data_test >> fit_model01 >> test_model
-gener_class3 >> get_data_test >> fit_model01 >> test_model
-gener_class1 >> get_data_train >> fit_model02 >> test_model
-gener_class2 >> get_data_train >> fit_model02 >> test_model
-gener_class3 >> get_data_train >> fit_model02 >> test_model
-gener_class1 >> get_data_test >> fit_model02 >> test_model
-gener_class2 >> get_data_test >> fit_model02 >> test_model
-gener_class3 >> get_data_test >> fit_model02 >> test_model
+
